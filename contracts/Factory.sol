@@ -9,7 +9,6 @@ contract CreateCampaigns {
     event CampaignCreated(
         address campaignAddress,
         uint256 rewardunit,
-        uint256 startdate,
         uint256 endate
     );
 
