@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
-// import "github/OpenZeppelin/openzeppelin-contracts/contracs/access/Ownable.sol";
-// import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol";
+
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 //factory
@@ -35,6 +34,8 @@ contract Campaign is Ownable {
     constructor(uint256 _rewardunit, uint256 _endate) payable {
         // msg.sender = owner;
         // owner = msg.sender;
+        require(msg.value > 0, "Please deposit more than 0");
+
         rewardunit = _rewardunit;
         endate = _endate;
         deposit(msg.value);
@@ -52,8 +53,6 @@ contract Campaign is Ownable {
 
     //campapign struct campaign ID, contract address of the campapign, amount of payout
     function deposit(uint256 _amount) public payable {
-        require(msg.value > 0, "Please deposit more than 0");
-
         contractBalance = contractBalance + _amount;
 
         emit Deposited(_amount);
