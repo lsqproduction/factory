@@ -34,7 +34,7 @@ contract Campaign is Ownable {
 
         emit Deposited(_amount);
     }
-    function payout(bool _verification, address payee, uint256 amount) public payable {
+    function payout(bool _verification, address payee, uint256 amount) public onlyOwner payable {
         // Check enough balance available, otherwise just return balance
         // claimer storage Claimer = claimees[msg.sender];
         claimer storage Claimer = claimees[payee];
